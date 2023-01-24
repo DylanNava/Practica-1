@@ -1,0 +1,225 @@
+/** Nava Rodriguez Dylan A. */
+
+#include <iostream>
+#include <conio.h>
+#include <windows.h>
+
+using namespace std;
+
+class Empleado{    /**Nombre de la clase */
+
+private:        /** Atributos */
+
+    int clave;
+    string nombre;
+    string domicilio;
+    float sueldo;
+    string reportaA;
+
+public:         /** Funciones o metodos*/
+
+    void setclave(int);
+    void setnombre(string);
+    void setdomicilio(string);
+    void setsueldo(float);
+    void setreportaA(string);
+
+    void imprimir();
+    void cambiodomic(string);
+    void cambiareportaA(string);
+    void actualsueldo(float);
+
+};
+
+void Empleado::cambiodomic(string Domicilio_){
+
+    system("cls");
+    domicilio = Domicilio_;
+    cout << "Cambio realizado con exito";
+    getch();
+
+
+}
+
+void Empleado::actualsueldo(float Incremento_){
+
+    system("cls");
+    sueldo = ((sueldo*Incremento_)/100)+sueldo;
+    cout << "Incremento realizado con exito";
+    getch();
+
+}
+
+void Empleado::imprimir(){
+
+    system("cls");
+    cout << "Clave: " << clave << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Domicilio: " << domicilio << endl;
+    cout << "Sueldo: " << sueldo << endl;
+    cout << "Reporta a: " << reportaA <<endl;
+    getch();
+}
+
+void Empleado::cambiareportaA(string Cambio_){
+
+    system("cls");
+    reportaA = Cambio_;
+    cout << "Cambio realizado con exito";
+    getch();
+
+}
+
+
+ /** Setters */
+
+void Empleado::setclave(int Clave){
+
+    clave = Clave;
+}
+
+void Empleado::setnombre(string Nombre){
+
+    nombre = Nombre;
+}
+void Empleado::setdomicilio(string Domicilio){
+
+    domicilio = Domicilio;
+}
+void Empleado::setsueldo(float Sueldo){
+
+    sueldo = Sueldo;
+}
+void Empleado::setreportaA(string ReportaA){
+
+    reportaA = ReportaA;
+}
+
+
+int main()
+{
+    int opcion, clave;
+    float IncrementoSueldo;
+    char bandera;
+    string DireccionNueva, PersonaAreportar;
+
+    Empleado JefePlanta;
+    Empleado JefePersonal;
+
+    JefePlanta.setnombre("Juan");
+    JefePlanta.setclave(224);
+    JefePlanta.setdomicilio("San salvador 1222");
+    JefePlanta.setsueldo(3000.00);
+    JefePlanta.setreportaA("Maria");
+
+    JefePersonal.setnombre("Pedro");
+    JefePersonal.setclave(225);
+    JefePersonal.setdomicilio("Barranquilla 223");
+    JefePersonal.setsueldo(2600.00);
+    JefePersonal.setreportaA("Carlos");
+
+
+    do{
+    system("cls");
+    cout << "1. Cambiar domicilio"<<endl;
+    cout << "2. Actualizar sueldo"<<endl;
+    cout << "3. Imprimir datos de un empleado"<<endl;
+    cout << "4. Cambiar persona a reportar"<<endl;
+
+    cout << "Elija una opcion:";
+    cin >> opcion;
+
+
+    switch(opcion){
+    case 1:
+        system("cls");
+        cout << "Cambiando direccion del empleado....";
+        cout <<endl<<endl;
+        cout << "Clave del empleado que se solicita es: ";
+        cin >> clave;
+            if(clave==224){
+                    cout << "Ingrese la nueva direccion: ";
+                    cin >> DireccionNueva;
+                    JefePlanta.cambiodomic(DireccionNueva);
+            }else if (clave==225){
+                    cout << "Ingrese la nueva direccion: ";
+                    cin >> DireccionNueva;
+                    JefePersonal.cambiodomic(DireccionNueva);
+            }else{
+                    system("cls");
+                    cout << "Empleado no encontrado";
+                    getch();
+            }
+        break;
+
+    case 2:
+        system("cls");
+        cout << "Actualizando sueldo de un empleado....";
+        cout <<endl<<endl;
+        cout << "Clave del empleado que se solicita es: ";
+        cin >> clave;
+            if(clave==224){
+                    cout << "Porcentaje de incremento a aplicar: ";
+                    cin >> IncrementoSueldo;
+                    JefePlanta.actualsueldo(IncrementoSueldo);
+            }else if (clave==225){
+                    cout << "Ingrese la nueva direccion: ";
+                    cin >> IncrementoSueldo;
+                    JefePersonal.actualsueldo(IncrementoSueldo);
+            }else{
+                    system("cls");
+                    cout << "Empleado no encontrado";
+                    getch();
+            }
+        break;
+    case 3:
+        system("cls");
+        cout << "Mostrando datos del empleado....";
+        cout <<endl<<endl;
+        cout << "Clave del empleado que se solicita es: ";
+        cin >> clave;
+            if(clave==224){
+                    JefePlanta.imprimir();
+            }else if (clave==225){
+                    JefePersonal.imprimir();
+            }else{
+                    system("cls");
+                    cout << "Empleado no encontrado";
+                    getch();
+            }
+        break;
+    case 4:
+        system("cls");
+        cout << "Cambiando la persona a reportar....";
+        cout <<endl<<endl;
+        cout << "Clave del empleado que se solicita es: ";
+        cin >> clave;
+            if(clave==224){
+                    cout << "Persona a reportar: ";
+                    cin >> PersonaAreportar;
+                    JefePlanta.cambiareportaA(PersonaAreportar);
+            }else if (clave==225){
+                    cout << "Persona a reportar: ";
+                    cin >> PersonaAreportar;
+                    JefePersonal.cambiareportaA(PersonaAreportar);
+            }else{
+                    system("cls");
+                    cout << "Empleado no encontrado";
+                    getch();
+            }
+        break;
+
+    default:
+        break;
+
+    }
+
+    system("cls");
+    cout << "¿Repetir programa? (S/N)"<<endl;
+    cin  >> bandera;
+
+    }while(bandera=='s'||bandera=='S');
+
+    getch();
+
+}
